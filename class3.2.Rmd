@@ -1,0 +1,33 @@
+#joins
+
+```{r}
+library(nycflights13)
+planes
+airlines
+airports
+flights
+weather
+```
+
+```{r}
+library(dplyr)
+library(magrittr)
+
+flights2 <- flights%>%
+  select(year:day,hour,origin,dest,tailnum,carrier)
+flights2
+```
+```{r}
+inner_join(flights2,weather)
+```
+
+```{r}
+View(flights%>%
+  inner_join(planes,by="tailnum")%>%
+  filter(origin=="EMR" & year.x=="2013") & month == "1" &day =="1")%>%
+  select(year.x,mont,day,model,origin)
+```
+```{r}
+
+```
+

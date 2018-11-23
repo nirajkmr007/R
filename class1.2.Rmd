@@ -1,0 +1,71 @@
+```{r}
+x <- c(1,55,4,89)
+y <- x>10
+y
+```
+
+```{r}
+c(-1,0,1)/0
+```
+
+```{r}
+sample(10)+100 # recycle
+```
+
+```{r}
+1:9 +1:3
+```
+
+```{r}
+x[c(1:3)]
+x[c(1,3)]
+x[x<3]
+
+```
+-----------List------------
+```{r}
+z <- list(a=1:3,b="a str",c =pi,d=list(-1,-5))
+str(z)
+```
+
+```{r}
+x3<-list(1,2,list(2,list(3)))
+str(x3)
+```
+```{r}
+str(z[4])
+str(z[[4]])
+```
+Function
+```{r}
+?mean
+```
+
+```{r}
+pos_detection<-function(x){
+if(x>0){
+  print("pos")
+}else if(x==0){
+  print("zero")
+}else{
+  print("neg")}
+}
+
+pos_detection(-12)
+```
+
+```{r}
+sum_two <- function(x,y){
+  return(x+y)
+}
+
+sum_two(2,5)
+```
+
+```{r}
+f<- function(x){
+  x+y
+}
+f(10)
+```
+

@@ -1,0 +1,21 @@
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+In mpg data, find out relationship between variables displ and hwy , adding class as a third dimension to it using color.
+
+```{r}
+head(mpg)
+```
+```{r}
+ggplot(data = mpg,mapping = aes(x=displ, y=hwy, z=class))+
+  geom_line()
+```
+
+
+In diamonds dataset (it exists in base R), find out the relationship between x and y. Also, make sure your x and y axis starts with 4 not with 0. (Explore how to limit your axes)
+What happens if you include the name of a variable multiple times in a select() call?
+Compare dep_time, sched_dep_time, and dep_delay.
+How would you expect those three numbers to be related
+For each destination, compute the total minutes of delay.

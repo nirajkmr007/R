@@ -1,0 +1,112 @@
+```{r}
+library("tidyverse")
+
+library("dplyr")
+
+library("lubridate")
+
+library("ggplot2")
+
+library("nycflights13")
+
+library("readr")
+
+library("readxl")
+```
+
+Q.1.) read tsv file from  
+
+Download and extract zip file using below url from data folder. 
+https://archive.ics.uci.edu/ml/datasets/Online+Video+Characteristics+and+Transcoding+Time+Dataset 
+
+#read the tsv files using read.tsv() function and sep argument 
+#check whether column names are accurately mapped
+#perform str() on the df to see the structure of dataset
+#do head and tail operations on the imported dataset
+```{r}
+?read_tsv
+```
+
+```{r}
+tsv_df = read_tsv("online_video_dataset/transcoding_mesurment.tsv")
+#head(tsv_df)
+#tail(tsv_df)
+#str(tsv_df)
+#spec(tsv_df)
+names(tsv_df)
+```
+
+Q.2.) read json file
+json_file<-'https://pkgstore.datahub.io/core/natural-gas/monthly_json/data/483ae180984bc144731bb8b52255965b/monthly_json.json'
+# install jsonlite package 
+# load data using fromJson() function
+# Data should look like 
+ Month Price
+1   1997-01  3.45
+2   1997-02  2.15
+3   1997-03  1.89
+4   1997-04  2.03
+5   1997-05  2.25
+6   1997-06  2.20
+7   1997-07  2.19
+```{r}
+install.packages("jsonlite")
+library("jsonlite")
+```
+```{r}
+json_df = fromJSON("https://pkgstore.datahub.io/core/natural-gas/monthly_json/data/483ae180984bc144731bb8b52255965b/monthly_json.json")
+
+head(json_df)
+```
+
+
+Q.3.) Implement a fizzbuzz function. It takes a single number as input. If the number is divisible by three, it returns “fizz”. If it’s divisible by five it returns “buzz”. If it’s divisible by three and five, it returns “fizzbuzz”. Otherwise, it returns the number. Make sure you first write working code before you create the function.
+```{r}
+fizzbuzz_finder = function(x){
+  if(x%%15==0){
+    return("fizzbuzz")
+  }else if(x%%3==0){
+    return("fizz")
+  }else if(x%%5==0){
+    return("buzz")
+  }
+  return(x)  
+}
+
+fizzbuzz_finder(4)
+```
+ 
+
+Q.4.) Write a function which takes 1:100 numbers as input and computes:
+the cube of a number if number is less than 55
+the square if otherwise.
+If the number is greater than 100 it should through an error with a message invalid number.
+```{r}
+number_validator = function(x){
+  if(x>100){
+    return("invalid number")
+  }else if(x<55){
+    return(x*x*x)
+  }
+  return(x*x)
+}
+
+number_validator(101)
+```
+
+
+Q.5.) Write a function which takes 2 positive numbers as input and checks whether the first number is multiple of second number or not, display the message appropriately if otherwise
+
+```{r}
+multiple_finder = function(x,y){
+  if(x<0 || y<0){
+    return("please insert positive numbers")
+  }else if(y%%x==0){
+    return("yes")
+  }
+  return("no")
+  
+}
+multiple_finder(2,-7)
+```
+

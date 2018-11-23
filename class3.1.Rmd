@@ -1,0 +1,45 @@
+#data cleaning with tidy
+
+```{r}
+load("/Users/nirajkumar/R/cases.rdata")
+load("/Users/nirajkumar/R/storms.rdata")
+library(tidyr)
+```
+
+```{r}
+cases
+storms
+```
+```{r}
+cs<-gather(cases,year,count,2:4)
+cs
+```
+#spread
+```{r}
+spread(cs,year,count)
+```
+```{r}
+storms
+```
+
+#separate
+```{r}
+st = separate(storms,date,c('year','month','day'),sep = '-',remove = FALSE)
+st
+```
+#unite
+```{r}
+unite(st,year,c('year','month','day'),sep='-')
+```
+```{r}
+stocks <- tibble(
+  year  = c(2015,2015,2015,2015,2016,2016,2016),
+  qtr = c(1,2,3,4,1,2,3),
+  pof = c(1.1,2.3,.5,NA,3.3,1.2,4.4)
+)
+stocks
+```
+```{r}
+spread(stocks,year,qtr)
+```
+

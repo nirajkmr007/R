@@ -1,0 +1,97 @@
+#Data Transformation
+#package dplyr
+
+```{r}
+options(warn = 1)
+library("nycflights13")
+library("dplyr")
+names(flights)
+```
+
+#filter
+```{r}
+jan1 <-filter(flights,month == 1, day == 1)
+jan1
+```
+
+```{r}
+nov_dec <- filter(flights, month %in% c(11,12))
+nov_dec
+```
+
+#missing values
+
+```{r}
+x <-NA
+is.na(x)
+```
+
+```{r}
+df <- data.frame(x = c(1,2,NA,4,5))
+filter(df,x>1)
+```
+
+```{r}
+filter(df,is.na(x)|x>1)
+```
+
+```{r}
+filter(df, is.na(x))
+```
+
+#Arrange
+#simillar to order by
+
+```{r}
+arrange(flights,year,month,day)
+```
+
+```{r}
+arrange(flights,desc(year,month,day))
+```
+```{r}
+select(flights,year,day)
+```
+
+
+#select keyword 
+
+
+```{r}
+select(flights,year:day)
+```
+```{r}
+select(flights,-(year:day))
+```
+
+#rename and mutate(calculated filed)
+
+```{r}
+renamed_df = rename(flights,tail_num = tailnum)
+```
+```{r}
+mutated_df  = select(mutate(flights, day_month = day+month),day_month,day,month)
+mutated_df
+```
+
+
+#summarize
+
+
+```{r}
+summarise(flights,delay=mean(dep_delay,na.rm=TRUE))
+```
+
+```{r}
+by_day <- group_by(flights,year,month,day)
+summarise(by_day,delay=mean(dep_delay,na.rm=TRUE))
+```
+#pipe
+```{r}
+flight_agg <- flights %>%
+  group_by(year,month,day) %>%
+  summarise(delay=mean(dep_delay,na.rm=TRUE))
+
+flight_agg
+```
+

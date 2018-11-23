@@ -1,0 +1,93 @@
+# ggplot
+# analysis exploprotory
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+# import data
+```{r}
+data(mpg)
+head(mpg)
+names(mpg)
+```
+#summary
+```{r}
+summary(mpg)
+summary(mpg$displ)
+
+unique(mpg$trans)
+length(unique(mpg$trans))
+```
+
+# visualising distribution
+
+# for categroical variable
+```{r}
+p <- ggplot(data=mpg) + geom_bar(mapping = aes(x = class))
+p
+```
+
+```{r}
+p <- ggplot(data=mpg) + geom_line(mapping = aes(x = class,y=cty))
+p
+```
+
+```{r}
+p <- ggplot(data=mpg) + geom_bar(mapping = aes(x = class), fill="darkred") + labs(x="Class of car", y = "Number of vechiles launched")
+
+p + ggtitle("hello")
+```
+
+```{r}
+p <- ggplot(data=mpg) + geom_bar(mapping = aes(x = class, fill=drv)) + labs(x="Class of car", y = "Number of vechiles launched") + scale_fill_manual("drv", values = c("4" = "black", "f" = "orange", "r" = "blue")) +coord_flip()
+
+#scale_fill_brewer(palette = "set2")
+p
+```
+
+```{r}
+mpg %>%
+  ggplot()+
+  geom_histogram(aes(hwy),bins = 20)
+```
+```{r}
+g <- mpg %>%
+  ggplot()+
+  geom_point(aes(x=displ, y=hwy,fill=hwy))
+g
+```
+```{r}
+g + 
+  geom_smooth(aes(x=displ,y=hwy))
+```
+
+```{r}
+ggplot(data=mpg, mapping = aes(x= class, y=hwy)) +
+  geom_boxplot()
+```
+```{r}
+  flt <- filter(mpg,class==c("compact","suv") )
+
+flt %>%
+ggplot(mapping = aes(x= class, y=hwy)) +
+  geom_boxplot()
+
+```
+```{r}
+mpg %>%
+ggplot(mapping = aes(x= manufacturer)) +
+  geom_bar()+coord_flip()
+```
+```{r}
+ggplot(data = mpg, aes(x=displ,y=hwy))+
+  geom_point()+
+  geom_smooth()+
+  facet_grid(.~drv)
+```
+
+```{r}
+ggplot(data = iris, aes(Species, Sepal.Length))+
+  geom_boxplot(aes(color=Sepal.Width <3.2))
+```
+
